@@ -1,0 +1,30 @@
+body{
+	font-family: "microsoft yahei";
+}
+::selection{background: #16A085;color: white;}
+.nav-style{background:#16A085;padding-top: 5px;padding-bottom: 5px;}
+.nav-style a{font-weight: bold;color: white;transition: all 0.2s;font-size: 14px;}
+.nav-style a:hover{color: #438EB9;transition: all 0.2s;}
+.nav-user{color: white;float: right;margin-top: 15px;}
+/*.left-menu{background: #626466;color: white;}*/
+.left-menu{color: grey;padding-top: 15px;}
+.left-menu ul{padding-left: 0px;}
+.left-menu ul li{list-style: none;margin-top: 10px;text-indent: 1em;border-bottom: 1px solid gainsboro;}
+.left-menu ul li a{text-decoration: none;}
+.right-title{background: #F5F5F5;border-bottom: 1px solid gainsboro;padding: 5px 10px;}
+.right-content{padding: 0px;}
+.right-shortcut,.right-help{border-bottom: 1px solid gainsboro;margin: 0 20px;}
+.right-shortcut ul,.right-help ul{font-weight: 600;margin-top: 10px;color: gray;padding-left: 20px;}
+.right-shortcut ul li,.right-help ul li{list-style: none;margin-right: 15px;font-weight: normal;display: inline-block;}
+.right-baseInfo{border-bottom: 1px solid gainsboro;margin: 0 20px;}
+.right-baseInfo ul{font-weight: 600;margin-top: 10px;color: gray;padding-left: 20px;}
+.right-baseInfo ul table{font-weight: normal;margin-left: 20px;}
+.tdleft{text-align: right;height: 40px;}
+.tdright{text-align: left;padding-left: 20px;color: #E04343;}
+.right-help ul li{padding-left: 0px;}
+.bottom-content{background:#16A085;color: white;height: 30px;padding-top: 5px;}
+/*滚动条*/
+::-webkit-scrollbar{width:19px;}
+::-webkit-scrollbar-track-piece{background-color:#ffffff;}
+::-webkit-scrollbar-thumb{background-color:#13CAA6;border-radius:5px;border:2px solid #ffffff;}
+::-webkit-scrollbar-thumb:hover{background: #00B28F}

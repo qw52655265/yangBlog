@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.BlogDao" >
+  <!-- resultMap -->
+  <resultMap id="BaseResultMap" type="com.yang.entity.BlogBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="typeName" property="typeName" jdbcType="VARCHAR" />
+    <result column="sortorder" property="sortorder" jdbcType="INTEGER" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="signTag" property="signTag" jdbcType="VARCHAR" />
+    <result column="signTagName" property="signTagName" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="hitcount" property="hitcount" jdbcType="INTEGER" />
+    <result column="commentcount" property="commentcount" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="VARCHAR" />
+    <result column="editdate" property="editdate" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.yang.entity.BlogBean" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a.id id, 
+    a.title title, 
+    a.typeid typeid, 
+    b.itemName typeName, 
+    a.sortorder sortorder, 
+    a.summary summary, 
+    a.signTag signTag, 
+    a.signTagName signTagName, 
+    a.keyword keyword, 
+    a.hitcount hitcount, 
+    a.commentcount commentcount, 
+    a.content content,
+    DATE_FORMAT(a.createdate,'%Y-%m-%d %H:%i') createdate, 
+    DATE_FORMAT(a.editdate,'%Y-%m-%d %H:%i')   editdate,
+    a.img img,
+    (select count(cc.id) from t_blog cc) recordCount
+  </sql>
+  
+  <!-- 获取博文列表 -->
+  <select id="getBlogList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    order by a.createdate desc 
+    limit #{startRecordNum,jdbcType=INTEGER},5
+  </select>
+  
+  <!-- 获取博文详细内容 -->
+  <select id="getBlogInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    where a.id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 插入一篇博客文章 -->
+  <insert id="addBlog" parameterType="com.yang.entity.BlogBean" >
+    insert into t_blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title != null" > title, </if>
+      <if test="typeid != null" > typeid,</if>
+      <if test="sortorder != null" > sortorder, </if>
+      <if test="summary != null" > summary, </if>
+      <if test="signTag != null" > signTag, </if>
+      <if test="signTagName != null" > signTagName, </if>
+      <if test="keyword != null" > keyword, </if>
+      <if test="content != null" > content, </if>
+      <if test="img != null" > img, </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" > #{title,jdbcType=VARCHAR}, </if>
+      <if test="typeid != null" > #{typeid,jdbcType=INTEGER}, </if>
+      <if test="sortorder != null" > #{sortorder,jdbcType=INTEGER}, </if>
+      <if test="summary != null" >  #{summary,jdbcType=VARCHAR}, </if>
+      <if test="signTag != null" > #{signTag,jdbcType=VARCHAR}, </if>
+      <if test="signTagName != null" > #{signTagName,jdbcType=VARCHAR}, </if>
+      <if test="keyword != null" > #{keyword,jdbcType=VARCHAR}, </if>
+      <if test="content != null" > #{content,jdbcType=LONGVARCHAR}, </if>
+      <if test="img != null" > #{img,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  
+  
+  <!-- 更新一篇博客文章 -->
+  <update id="editBlog" parameterType="com.yang.entity.BlogBean" >
+    update t_blog
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="sortorder != null" >
+        sortorder = #{sortorder,jdbcType=INTEGER},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="signTag != null" >
+        signTag = #{signTag,jdbcType=VARCHAR},
+      </if>
+      <if test="signTagName != null" >
+        signTagName = #{signTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      editdate = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 删除一篇博客文章 -->
+  <delete id="deleteBlog" parameterType="java.lang.String" >
+    delete from t_blog where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 批量删除博文 -->
+  <delete id="deleteBlogBatch" parameterType="java.lang.String" >
+    delete from t_blog where id in ( ${idString} )
+  </delete>
+  
+  <!-- 自动更新浏览次数 -->
+  <update id="autoHitCount" parameterType="java.lang.String" >
+  	update t_blog set hitcount=hitcount+1 where id=#{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 获取首页的文章推荐 -->
+  <select id="getBlogList4Index" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    order by a.createdate desc 
+    limit #{startRecordNum,jdbcType=INTEGER},10
+  </select>
+  
+  <!-- 获取条件查询排行榜-->
+  <select id="getBlogListByCondition" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    order by ${condition} 
+    limit 0, 6
+  </select>
+  
+  <!-- 根据id，查询上一条记录 -->
+  <select id="getPrevBlog" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    where a.id &gt; #{id,jdbcType=INTEGER}
+    order by id asc
+    limit 1
+  </select>
+  
+  <!-- 根据id，查询下一条记录 -->
+  <select id="getNextBlog" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    where a.id &lt; #{id,jdbcType=INTEGER}
+    order by id desc
+    limit 1
+  </select>
+  
+  <!-- 获取博文列表（若有博文类型，则查询，否则查询所有记录）用于文章列表 -->
+  <select id="getBlogListByBolgType" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    <if test="typeid != null">
+    	where a.typeid=#{typeid,jdbcType=VARCHAR} 
+    </if>
+    order by a.createdate desc 
+    limit #{startRecordNum,jdbcType=INTEGER},10
+  </select>
+
+</mapper>

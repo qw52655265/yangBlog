@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+body{font-size: 14px;font-family: "microsoft yahei";padding: 0px;}
+.breadcrumb{border-radius: 0px;border-bottom:1px solid gainsboro}
+.container-fluid{padding: 0px;}
+.list-body{padding:10px}
+.list-search{width: 200px;float: right;}
+.list-search button{outline:none;}
+.list-type{width: 150px;display: inline-block;}
+/* .list-type select,#pluginList,#OneClassify,#compatible{border-radius: 0px;height: 35px;background: url(../images/arrow_carrot-down.png) no-repeat scroll 125px center transparent;appearance:none;-moz-appearance:none;-webkit-appearance:none;} */
+.list-table{width:100%}
+.list-table td{padding:5px 10px;border-bottom: 1px solid #EEE;}
+.list-table td:nth-child(odd){border-right: 1px solid #EEE;}
+.list-table tr:last-child td{border-bottom: 1px solid #FFF;}
+.required{color:red;float:right;padding-top:5px}
+.modal-title{font-size: 16px;font-weight: 600}
+/* #addListButton{position: relative;height:35px;top:-2px;line-height: 22px;border-radius:0px} */
+::selection{background: #1ABC9C;color: white;}
+.green{color:green;font-weight: 600;padding-left:10px;font-size: 12px;}
+.red{color:red;font-weight: 600;padding-left:10px;font-size: 12px;}
+.table td,.table th{border-top: 1px solid gainsboro;border-left: 1px solid gainsboro;}
+.table .left{border-left: 0px solid gainsboro;text-align: center;}
+.table>thead>tr>th{text-align: center;border-bottom:0px solid red}
+.top_classify{background: black;}
+.data_info{text-align: center;font-weight: bold;color:#E74C3C}

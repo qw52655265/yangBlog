@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.navbar-me{border-radius:0px;margin-bottom:0px;}
+.navbar-me li a,.navbar-me li p{font-size:14px}
+.blod{font-weight: 600}
+::selection{background: #1ABC9C;color: white;}

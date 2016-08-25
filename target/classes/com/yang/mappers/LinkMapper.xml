@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.LinkDao" >
+  <!-- resultMap -->
+  <resultMap id="BaseResultMap" type="com.yang.entity.LinkBean" >
+    <id column="linkId" property="linkId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="addDate" property="addDate" jdbcType="VARCHAR" />
+    <result column="editDate" property="editDate" jdbcType="VARCHAR" />
+    <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+  	linkId,
+  	name,
+  	url,
+  	DATE_FORMAT(addDate,'%Y-%m-%d %H:%i') addDate, 
+  	DATE_FORMAT(editDate,'%Y-%m-%d %H:%i') editDate,
+  	(select count(*) from t_link) recordCount
+  </sql>
+  
+  <!-- 获取友情链接列表  -->
+  <select id="getLinkList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_link 
+    order by addDate desc 
+    limit #{startRecordNum}, 5
+  </select>
+  
+  <!-- 保存友情链接（新增） -->
+  <insert id="addLink" parameterType="com.yang.entity.LinkBean" >
+    insert into t_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="linkId != null" > linkId, </if>
+      <if test="name != null" > name,</if>
+      <if test="url != null" > url,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="linkId != null" > #{linkId,jdbcType=VARCHAR}, </if>
+      <if test="name != null" > #{name,jdbcType=VARCHAR}, </if>
+      <if test="url != null" > #{url,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  <!-- 保存友情链接（编辑） -->
+  <update id="editLink" parameterType="com.yang.entity.LinkBean" >
+    update t_link
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      editDate=now() 
+    </set>
+    where linkId = #{linkId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据id删除友情链接 -->
+  <delete id="deleteLink" parameterType="java.lang.String" >
+    delete from t_link where linkId = #{linkId,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 根据id串批量删除友情链接 -->
+  <delete id="deleteLinkBatch" parameterType="java.lang.String" >
+    delete from t_link where linkId in (${linkIds})
+  </delete>
+  
+</mapper>

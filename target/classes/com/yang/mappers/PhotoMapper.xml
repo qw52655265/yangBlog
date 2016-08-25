@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.PhotoDao" >
+  <!-- resultMap -->
+  <resultMap id="BaseResultMap" type="com.yang.entity.PhotoBean" >
+    <id column="photoId" property="photoId" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentId" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="addDate" property="addDate" jdbcType="VARCHAR" />
+    <result column="editDate" property="editDate" jdbcType="VARCHAR" />
+    <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+  	photoId,
+  	parentId,
+  	url,
+  	name,
+  	DATE_FORMAT(addDate,'%Y-%m-%d %H:%i') addDate, 
+  	DATE_FORMAT(editDate,'%Y-%m-%d %H:%i') editDate, 
+  	(select count(*) from t_photo where parentId='0') recordCount
+  </sql>
+  
+  <!-- 获取相册列表  -->
+  <select id="getPhotoList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_photo 
+    where parentId='0'
+    order by addDate desc 
+    limit #{startRecordNum}, 5
+  </select>
+  
+  <!-- 保存照片（新增） -->
+  <insert id="addPhoto" parameterType="com.yang.entity.PhotoBean" >
+    insert into t_photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="photoId != null" > photoId, </if>
+      <if test="parentId != null" > parentId, </if>
+      <if test="url != null" > url,</if>
+      <if test="name != null" > name,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="photoId != null" > #{photoId,jdbcType=VARCHAR}, </if>
+      <if test="parentId != null" > #{parentId,jdbcType=VARCHAR}, </if>
+      <if test="url != null" > #{url,jdbcType=VARCHAR}, </if>
+      <if test="name != null" > #{name,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  <!-- 保存照片（编辑） -->
+  <update id="editPhoto" parameterType="com.yang.entity.PhotoBean" >
+    update t_photo
+    <set >
+      <if test="parentId != null" >
+        parentId = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      editDate=now() 
+    </set>
+    where photoId = #{photoId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据id删除照片-->
+  <delete id="deletePhoto" parameterType="java.lang.String" >
+    delete from t_photo where photoId = #{photoId,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 根据id串批量删除照片 -->
+  <delete id="deletePhotoBatch" parameterType="java.lang.String" >
+    delete from t_photo where photoId in (${photoIds})
+  </delete>
+  
+   <!-- 获取相片列表  -->
+  <select id="getPhotoInfoList" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_photo 
+    where parentId=#{parentId,jdbcType=VARCHAR} 
+    order by addDate desc 
+  </select>
+  
+</mapper>

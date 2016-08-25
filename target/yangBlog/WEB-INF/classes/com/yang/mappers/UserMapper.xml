@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.UserDao" >
+  <!-- resultMap -->
+  <resultMap id="BaseResultMap" type="com.yang.entity.UserBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="loginName" property="loginName" jdbcType="VARCHAR" />
+    <result column="passWord" property="passWord" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+  	id,
+  	userName,
+  	loginName,
+  	passWord
+  </sql>
+  
+  <!-- 根据登录名获取用户  -->
+  <select id="getUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_user 
+    where loginName=#{loginName,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 保存音乐（新增） -->
+  <insert id="addMusic" parameterType="com.yang.entity.MusicBean" >
+    insert into t_music
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="musicId != null" > musicId, </if>
+      <if test="name != null" > name,</if>
+      <if test="source != null" > source,</if>
+      <if test="size != null" > size,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="musicId != null" > #{musicId,jdbcType=VARCHAR}, </if>
+      <if test="name != null" > #{name,jdbcType=VARCHAR}, </if>
+      <if test="source != null" > #{source,jdbcType=VARCHAR}, </if>
+      <if test="size != null" > #{size,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  <!-- 根据id删除音乐-->
+  <delete id="deleteMusic" parameterType="java.lang.String" >
+    delete from t_music where musicId = #{musicId,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 根据id串删除音乐 -->
+  <delete id="deleteMusicBatch" parameterType="java.lang.String" >
+    delete from t_music where musicId in (${musicIds})
+  </delete>
+  
+</mapper>

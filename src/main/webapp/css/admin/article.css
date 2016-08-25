@@ -1,0 +1,33 @@
+body{font-size: 14px;font-family: "microsoft yahei";padding: 0px;}
+a:hover{text-decoration: none}
+::selection{background: #EB474C;color: white;}
+.breadcrumb{border-radius: 0px;border-bottom:1px solid gainsboro}
+.container-fluid{padding: 0px;}
+.article-body{padding:10px}
+.article-type{width: 150px;display: inline-block;}
+.article-type select{border-radius: 0px;height: 37px;background: url(../images/arrow_carrot-down.png) no-repeat scroll 125px center transparent;appearance:none;-moz-appearance:none;-webkit-appearance:none;}
+.article-search{width: 200px;float: right;}
+.article-search button{outline:none;}
+.table td,.table th{border-top: 1px solid gainsboro;border-left: 1px solid gainsboro;}
+.table .left{border-left: 0px solid gainsboro;text-align: center;}
+.table th{text-align: center;}
+button{outline: none;}
+.article-table td{padding:5px 10px;border: 0px solid darkred;}
+.required{color:red;float:right;padding-top:5px}
+.green{color:green}
+.tdleft{text-align: right;height: 40px;}
+.tdright{text-align: left;padding-left: 20px;}
+.photoListItem{width:210px,;display:inline-block;margin:5px;position:relative;}
+.photoListItemName {width:100%;text-align: center;}
+.photoListItemName a{color:#D84C29}
+.photoListItemName a:HOVER{color:red}
+.photoListImg{}
+.photoListImg:hover{border:1px solid #D84C29}
+.photoCheck{position:absolute;top:5px;left:5px;font-size: 20px;color:green;}
+.photoEdit{position:absolute;top:5px;left:183px;font-size: 20px;color:green;font-weight:600}
+.photoDelete{position:absolute;top:4px;left:158px;font-size: 20px;color:red;font-weight:600}
+.pagination-nav{float:right;margin-top:-20px}
+.pagination-nav div{color:#D84C29}
+.tagCheck{position: relative;top: 2px}
+.Description{width:100%}
+.error-border{border-color:#FF0000;}

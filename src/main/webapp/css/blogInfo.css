@@ -1,0 +1,33 @@
+.article_page{margin:0px 0px}
+.article_info{font-size: 14px;margin-top: 0px;border-bottom: 3px solid #CCCCCC;padding-bottom: 5px;;}
+.article_info a{color: #3399CC;}
+.article_info a:hover{opacity: 0.9;}
+.articleInfo_title{font-size: 20px;color: #666666;font-weight: 600}
+.article_text {margin-top: 20px;;}
+.articleTitle{text-align:center;}
+.articleInfo_info{font-size: 14px;margin-top: 10px;border-bottom: 1px solid #CCCCCC;padding-bottom: 5px;color:#999999}
+.articleInfo_info span{margin-right: 20px;}
+.articleInfo_content{margin-top: 10px;border-bottom: 1px solid #CCCCCC;padding-bottom: 10px;position:relative;}
+.articleInfo_content p{text-align: left;text-indent: 2em;color: rgb(42, 42, 42);font-family: Arial, Helvetica, 'Microsoft Yahei', 'Hiragino Sans GB', sans-serif;line-height: 34.2px;text-align: justify;text-indent: 36px;/*background-color: rgb(255, 255, 255);*/font-size: 14px;}
+.articleInfo_share{float: right;}
+.articleInfo_next{width: 100%;margin-top: 40px;height:50px}
+.articleInfo_next .articleInfo_next0{float: left;}
+.articleInfo_next .articleInfo_next1{float: right;}
+.articleInfo_about{border-bottom: 1px solid lightgray;}
+.articleInfo_about li{width: 150px;display: inline-block;margin: 7px;}
+.articleInfo_about li img{width: 150px;border: 1px solid lightgray;padding: 2px;transition: all 0.1s;}
+.articleInfo_about li img:hover{opacity: 0.8;transition: all 0.1s;}
+.articleInfo_about li a{font-size: 13px;color: #DB6D4C;transition: all 0.1s;}
+.articleInfo_about li a:hover{color: #419E0B;transition: all 0.1s;}
+.articleInfo_more{margin-top: 20px;}
+.articleInfo_more li{width: 220px;display: inline-block;font-size: 14px;height: 35px;line-height: 35px;}
+.articleInfo_more li a{color: gray;}
+.articleInfo_more li a:hover{color: #DB6D4C;}
+#TagName{display: inline-block;height:40px;padding-top:7px}
+#TagName span{background:rgba(0,153,204,1);color:white;padding:3px 8px;margin:0px 10px 0 0}
+#TagName span:HOVER {background:rgba(0,153,204,0.7)}
+pre {
+white-space: pre-wrap;
+word-wrap: break-word;
+padding:5px 10px;
+}

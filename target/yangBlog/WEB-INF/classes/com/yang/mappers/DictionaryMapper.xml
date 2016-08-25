@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.DictionaryDao" >
+  <!-- resultMap -->
+  <resultMap id="BaseResultMap" type="com.yang.entity.DictionaryBean" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="dictCode" property="dictCode" jdbcType="VARCHAR" />
+    <result column="dictName" property="dictName" jdbcType="VARCHAR" />
+    <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="DetailResultMap" type="com.yang.entity.DictionaryDetailBean" >
+    <id column="itemId" property="itemId" jdbcType="VARCHAR" />
+    <result column="dictCode" property="dictCode" jdbcType="VARCHAR" />
+    <result column="dictName" property="dictName" jdbcType="VARCHAR" />
+    <result column="itemCode" property="itemCode" jdbcType="VARCHAR" />
+    <result column="itemName" property="itemName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Dictionary_Column_List" >
+    id,
+    dictCode,
+    dictName,
+    (select count(*) from t_dictionary) recordCount
+  </sql>
+  
+  <sql id="DictionaryDetail_Column_List" >
+    a.itemId itemId,
+    a.dictCode dictCode,
+    a.itemCode itemCode,
+    a.itemName itemName,
+    b.dictName dictName
+  </sql>
+  
+  <!-- 获取字典dictCode+dictName列表  -->
+  <select id="getDictionaryList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select 
+    <include refid="Dictionary_Column_List" />
+    from t_dictionary 
+    order by dictCode asc 
+    limit #{startRecordNum}, 5
+  </select>
+  
+  <!-- 保存字典（新增） -->
+  <insert id="saveDictionaryAdd" parameterType="com.yang.entity.DictionaryBean" >
+    insert into t_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictCode != null" > dictCode, </if>
+      <if test="dictName != null" > dictName,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictCode != null" > #{dictCode,jdbcType=VARCHAR}, </if>
+      <if test="dictName != null" > #{dictName,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  <!-- 保存字典（编辑） -->
+  <update id="saveDictionaryEdit" parameterType="com.yang.entity.DictionaryBean" >
+    update t_dictionary
+    <set >
+      <if test="dictCode != null" >
+        dictCode = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        dictName = #{dictName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据id删除字典 -->
+  <delete id="deleteDictionary" parameterType="java.lang.String" >
+    delete from t_dictionary where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 根据id串批量删除字典 -->
+  <delete id="deleteDictionaryBatch" parameterType="java.lang.String" >
+    delete from t_dictionary where id in (${ids})
+  </delete>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 根据字典代码查询字典，获取列表 -->
+  <select id="getDictionaryDetailList" resultMap="DetailResultMap" parameterType="java.lang.String">
+  	select 
+    <include refid="DictionaryDetail_Column_List" />
+    from t_dictionarydetail a left join t_dictionary b 
+    on a.dictCode=b.dictCode 
+    where a.dictCode=#{dictCode,jdbcType=VARCHAR}
+    order by a.itemCode asc
+  </select>
+  
+  <!-- 保存字典项（新增） -->
+  <insert id="saveDetailAdd" parameterType="com.yang.entity.DictionaryDetailBean" >
+    insert into t_dictionarydetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" > itemId, </if>
+      <if test="dictCode != null" > dictCode, </if>
+      <if test="itemCode != null" > itemCode,</if>
+      <if test="itemName != null" > itemName,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" > #{itemId,jdbcType=VARCHAR}, </if>
+      <if test="dictCode != null" > #{dictCode,jdbcType=VARCHAR}, </if>
+      <if test="itemCode != null" > #{itemCode,jdbcType=VARCHAR}, </if>
+      <if test="itemName != null" > #{itemName,jdbcType=VARCHAR}, </if>
+    </trim>
+  </insert>
+  
+  <!-- 保存字典项（编辑） -->
+  <update id="saveDetailEdit" parameterType="com.yang.entity.DictionaryDetailBean" >
+    update t_dictionarydetail
+    <set >
+      <if test="dictCode != null" >
+        dictCode = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        itemCode = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        itemName = #{itemName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemId = #{itemId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据itemId删除字典项 -->
+  <delete id="deleteDetail" parameterType="java.lang.String" >
+    delete from t_dictionarydetail where itemId = #{itemId,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 根据itemIds批量删除字典项 -->
+  <delete id="deleteDetailBatch" parameterType="java.lang.String" >
+    delete from t_dictionarydetail where itemId in (${itemIds})
+  </delete>
+  
+  
+  
+  
+  
+
+</mapper>
