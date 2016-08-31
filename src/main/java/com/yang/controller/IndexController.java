@@ -232,5 +232,13 @@ public class IndexController {
 		}
 		return "page/list";
 	}
+	
+	@RequestMapping("getComment")
+	public String getComment(String action, String signature ){
+		System.out.println(action);
+		System.out.println(signature);
+		
+		return null;
+	}
 
 }
