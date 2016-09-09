@@ -67,7 +67,7 @@ public interface BlogDao {
      * @param condition
      * @return
      */
-    List<BlogBean> getBlogListByCondition(@Param("condition") String condition);
+    List<BlogBean> getBlogListByCondition(@Param("condition") String condition, @Param("num") int num);
     
     /**
      * 根据id，查询上一条记录

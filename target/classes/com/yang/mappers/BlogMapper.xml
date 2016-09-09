@@ -44,6 +44,25 @@
     (select count(cc.id) from t_blog cc) recordCount
   </sql>
   
+  <sql id="Condition_Column_List" >
+    a.id id, 
+    a.title title, 
+    a.typeid typeid, 
+    b.itemName typeName, 
+    a.sortorder sortorder, 
+    a.summary summary, 
+    a.signTag signTag, 
+    a.signTagName signTagName, 
+    a.keyword keyword, 
+    a.hitcount hitcount, 
+    a.commentcount commentcount, 
+    a.content content,
+    DATE_FORMAT(a.createdate,'%m/%d') createdate, 
+    DATE_FORMAT(a.editdate,'%m/%d')   editdate,
+    a.img img,
+    (select count(cc.id) from t_blog cc) recordCount
+  </sql>
+  
   <!-- 获取博文列表 -->
   <select id="getBlogList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
   	select 
@@ -151,12 +170,12 @@
   </select>
   
   <!-- 获取条件查询排行榜-->
-  <select id="getBlogListByCondition" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="getBlogListByCondition" resultMap="BaseResultMap">
   	select 
-    <include refid="Base_Column_List" />
+    <include refid="Condition_Column_List" />
     from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
     order by ${condition} 
-    limit 0, 6
+    limit 0, #{num,jdbcType=INTEGER}
   </select>
   
   <!-- 根据id，查询上一条记录 -->

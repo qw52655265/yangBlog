@@ -101,9 +101,9 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public String getBlogListByCondition(String condition) {
+	public String getBlogListByCondition(String condition, int num) {
 		
-		List<BlogBean> beans = blogDao.getBlogListByCondition(condition);
+		List<BlogBean> beans = blogDao.getBlogListByCondition(condition, num);
 		String json = JSON.toJSONString(beans);
 		
 		return json;

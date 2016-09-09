@@ -65,7 +65,7 @@ public interface BlogService {
      * @param condition
      * @return
      */
-    String getBlogListByCondition(String condition);
+    String getBlogListByCondition(String condition, int num);
     
     /**
      * 根据id，查询上一条记录

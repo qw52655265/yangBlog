@@ -1,7 +1,5 @@
 package com.yang.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +14,6 @@ import com.yang.service.DictionaryService;
 import com.yang.service.LinkService;
 import com.yang.utils.JSONUtils;
 import com.yang.utils.PageUtils;
-
-
-
-
-
-
 
 /**
  * 
@@ -62,10 +54,10 @@ public class IndexController {
 		}
 		
 		//点击排行
-		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ");
+		JSONObject hotCommentArticleList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
 	
 		//最新文章
-		JSONObject createdateList = getBlogListByCondition(" createdate desc ");
+		JSONObject recentArticleList = getBlogListByCondition(" createdate desc ", 5);
 		
 		try {
 			//标签云集
@@ -87,8 +79,8 @@ public class IndexController {
 			e.printStackTrace();
 		}
 		model.addAttribute("blogList", blogList);
-		model.addAttribute("clickNumList", clickNumList);
-		model.addAttribute("createdateList", createdateList);
+		model.addAttribute("hotCommentArticleList", hotCommentArticleList);
+		model.addAttribute("recentArticleList", recentArticleList);
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("linkList", linkList);
 		
@@ -129,10 +121,10 @@ public class IndexController {
 			e.printStackTrace();
 		}
 		//点击排行
-		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ");
+		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
 	
 		//最新文章
-		JSONObject createdateList = getBlogListByCondition(" createdate desc ");
+		JSONObject createdateList = getBlogListByCondition(" createdate desc ", 5);
 		
 		model.addAttribute("clickNumList", clickNumList);
 		model.addAttribute("createdateList", createdateList);
@@ -171,10 +163,10 @@ public class IndexController {
 			e.printStackTrace();
 		}
 		//点击排行
-		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ");
+		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
 	
 		//最新文章
-		JSONObject createdateList = getBlogListByCondition(" createdate desc ");
+		JSONObject createdateList = getBlogListByCondition(" createdate desc ", 5);
 		
 		try {
 			//上一条记录
@@ -211,11 +203,11 @@ public class IndexController {
 	 * 获取条件查询排行榜
 	 * @param model
 	 */
-	private JSONObject getBlogListByCondition(String condition){
+	private JSONObject getBlogListByCondition(String condition, int num){
 		
 		JSONObject json;
 		try {
-			String result = blogService.getBlogListByCondition(condition);
+			String result = blogService.getBlogListByCondition(condition, num);
 			JSONArray row = JSONArray.parseArray(result);
 			json = JSONUtils.setReturnSuccessJSON(row);
 		} catch (Exception e) {
