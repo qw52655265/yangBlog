@@ -1,5 +1,7 @@
 package com.yang.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,7 +92,7 @@ public class IndexController {
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("linkList", linkList);
 		
-		return "page/index";
+		return "page/front/index";
 	}
 	
 	/**
@@ -142,7 +144,7 @@ public class IndexController {
 		}
 		
 		
-		return "page/blogList";
+		return "page/front/blogList";
 	}
 	
 	/**
@@ -202,7 +204,7 @@ public class IndexController {
 		model.addAttribute("clickNumList", clickNumList);
 		model.addAttribute("createdateList", createdateList);
 		
-		return "page/blogInfo";
+		return "page/front/blogInfo";
 	}
 	
 	/**

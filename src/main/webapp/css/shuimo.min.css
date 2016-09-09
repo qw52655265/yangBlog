@@ -869,6 +869,15 @@ html {
 	margin:0 0 0 30px;
 	padding:10px 0 10px 0
 }
+/*@media screen and (max-width:1280px){
+	#logo{
+		display:none;
+	}
+	.zzsc{
+		display:none;
+	}
+}*/
+
 #nav {
 	position:relative;
 	top:0;
@@ -918,13 +927,13 @@ html {
 	-ms-transition:-ms-transform 1s ease-out;
 }
 #nav .bar .item:hover {
-	-webkit-transform:rotateZ(15deg);
+	/*-webkit-transform:rotateZ(15deg);
 	-moz-transform:rotateZ(15deg);
 	-o-transform:rotateZ(15deg);
 	-ms-transform:rotateZ(15deg);
 	transform:rotateZ(15deg);
-	border-radius:70px 10px;
-	background:#E15782;
+	border-radius:70px 10px;*/
+	background:#2F9BE9;
 	color:#FFFFFF;
 }
 #nav a:link {

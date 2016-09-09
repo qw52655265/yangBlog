@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<input id="index" type="hidden" value="0"/>
 	<div class="WB_miniblog">
 	<!-- 头部 -->
-	<jsp:include page="header1.jsp" />
+	<jsp:include page="header2.jsp" />
 	<!-- 头部 end -->
 	<div id="page">
 	<article>
@@ -100,46 +100,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 标签云end -->
 			
 			<!-- 图文推荐 -->			
-			<div class="tuwen">
-				<h3>图文推荐</h3>
-				<ul>
-					<li>
-						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a>
-						<p>
-							<span class="tulanmu"><a href="/">手机配件</a></span>
-							<span class="tutime">2015-02-15</span>
-						</p>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a>
-						<p>
-							<span class="tulanmu"><a href="/">手机配件</a></span>
-							<span class="tutime">2015-02-15</span>
-						</p>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a>
-						<p>
-							<span class="tulanmu"><a href="/">手机配件</a></span>
-							<span class="tutime">2015-02-15</span>
-						</p>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a>
-						<p>
-							<span class="tulanmu"><a href="/">手机配件</a></span>
-							<span class="tutime">2015-02-15</span>
-						</p>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a>
-						<p>
-							<span class="tulanmu"><a href="/">手机配件</a></span>
-							<span class="tutime">2015-02-15</span>
-						</p>
-					</li>
-				</ul>
-			</div>
+<!-- 			<div class="tuwen"> -->
+<!-- 				<h3>图文推荐</h3> -->
+<!-- 				<ul> -->
+<!-- 					<li> -->
+<!-- 						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a> -->
+<!-- 						<p> -->
+<!-- 							<span class="tulanmu"><a href="/">手机配件</a></span> -->
+<!-- 							<span class="tutime">2015-02-15</span> -->
+<!-- 						</p> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a> -->
+<!-- 						<p> -->
+<!-- 							<span class="tulanmu"><a href="/">手机配件</a></span> -->
+<!-- 							<span class="tutime">2015-02-15</span> -->
+<!-- 						</p> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a> -->
+<!-- 						<p> -->
+<!-- 							<span class="tulanmu"><a href="/">手机配件</a></span> -->
+<!-- 							<span class="tutime">2015-02-15</span> -->
+<!-- 						</p> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a> -->
+<!-- 						<p> -->
+<!-- 							<span class="tulanmu"><a href="/">手机配件</a></span> -->
+<!-- 							<span class="tutime">2015-02-15</span> -->
+<!-- 						</p> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<a href="javascript:void(0)"><img src="images/05.jpg"><b>住在手机里的朋友</b></a> -->
+<!-- 						<p> -->
+<!-- 							<span class="tulanmu"><a href="/">手机配件</a></span> -->
+<!-- 							<span class="tutime">2015-02-15</span> -->
+<!-- 						</p> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<!-- 图文推荐end -->
 
 <!-- 	    <div class="ad"> <img src="images/05.jpg"> </div> -->
