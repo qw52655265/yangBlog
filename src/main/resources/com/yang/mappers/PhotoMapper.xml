@@ -10,6 +10,7 @@
     <result column="addDate" property="addDate" jdbcType="VARCHAR" />
     <result column="editDate" property="editDate" jdbcType="VARCHAR" />
     <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
+    <result column="photoCount" property="photoCount" jdbcType="INTEGER" />
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -20,6 +21,16 @@
   	DATE_FORMAT(addDate,'%Y-%m-%d %H:%i') addDate, 
   	DATE_FORMAT(editDate,'%Y-%m-%d %H:%i') editDate, 
   	(select count(*) from t_photo where parentId='0') recordCount
+  </sql>
+  
+  <sql id="Front_Column_List" >
+  	a.photoId photoId,
+  	a.parentId parentId,
+  	a.url url,
+  	a.name name,
+  	DATE_FORMAT(a.addDate,'%Y-%m-%d %H:%i') addDate, 
+  	DATE_FORMAT(a.editDate,'%Y-%m-%d %H:%i') editDate, 
+  	(select count(*) from t_photo where parentId=a.photoId) photoCount
   </sql>
   
   <!-- 获取相册列表  -->
@@ -48,6 +59,11 @@
       <if test="name != null" > #{name,jdbcType=VARCHAR}, </if>
     </trim>
   </insert>
+  
+  <!-- 保存成功，修改相册默认封面 -->
+  <update id="updateAlbum" parameterType="com.yang.entity.PhotoBean" >
+    call updateAlbum (#{photoId,jdbcType=VARCHAR});
+  </update>
   
   <!-- 保存照片（编辑） -->
   <update id="editPhoto" parameterType="com.yang.entity.PhotoBean" >
@@ -86,4 +102,13 @@
     order by addDate desc 
   </select>
   
+  <!-- 博客前端·获取相册列表  -->
+  <select id="getAlbum" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Front_Column_List" />
+  	from t_photo a
+  	where parentId = '0'
+  	order by adddate desc
+  </select>
+   
 </mapper>

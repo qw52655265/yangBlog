@@ -23,10 +23,19 @@ public class BlogBean {
 	private String createdate;
 	private String editdate;
 	private String content;
-	private String img;//略缩图路径
-	private int recordCount;//总记录数
-	private int pageCount;//总页数
-	private int currentPage;//当前页数
+	private String img;// 略缩图路径
+	private String author;// 作者
+	private int recordCount;// 总记录数
+	private int pageCount;// 总页数
+	private int currentPage;// 当前页数
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
 	public int getPageCount() {
 		return pageCount;

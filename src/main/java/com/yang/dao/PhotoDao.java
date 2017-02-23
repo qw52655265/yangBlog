@@ -30,6 +30,16 @@ public interface PhotoDao {
 	int addPhoto(PhotoBean bean);
 	
 	/**
+	 * @描述 保存成功，修改相册默认封面 
+	 * @param photoId
+	 * @return
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 下午2:08:06
+	 * @version
+	 */
+	int updateAlbum(String photoId);
+	
+	/**
 	 * 保存照片（编辑）
 	 * @param bean
 	 * @return
@@ -56,5 +66,14 @@ public interface PhotoDao {
 	 * @return
 	 */
 	List<PhotoBean> getPhotoInfoList(@Param("parentId") String parentId);
+	
+	/**
+	 * @描述 博客前端·获取相册列表
+	 * @return
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 下午3:39:50
+	 * @version
+	 */
+	List<PhotoBean> getAlbum();
 
 }

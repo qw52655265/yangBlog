@@ -19,6 +19,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
     <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
     <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap id="ResultMapWithBLOBs" type="com.yang.entity.BlogBean" extends="BaseResultMap" >
@@ -41,6 +42,27 @@
     DATE_FORMAT(a.createdate,'%Y-%m-%d %H:%i') createdate, 
     DATE_FORMAT(a.editdate,'%Y-%m-%d %H:%i')   editdate,
     a.img img,
+    a.author author,
+    (select count(cc.id) from t_blog cc) recordCount
+  </sql>
+  
+  <sql id="Condition_Column_List" >
+    a.id id, 
+    a.title title, 
+    a.typeid typeid, 
+    b.itemName typeName, 
+    a.sortorder sortorder, 
+    a.summary summary, 
+    a.signTag signTag, 
+    a.signTagName signTagName, 
+    a.keyword keyword, 
+    a.hitcount hitcount, 
+    a.commentcount commentcount, 
+    a.content content,
+    DATE_FORMAT(a.createdate,'%m/%d') createdate, 
+    DATE_FORMAT(a.editdate,'%m/%d')   editdate,
+    a.img img,
+    a.author author,
     (select count(cc.id) from t_blog cc) recordCount
   </sql>
   
@@ -146,7 +168,48 @@
   	select 
     <include refid="Base_Column_List" />
     from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
-    order by hitCount desc , a.createdate desc 
+    order by a.createdate desc 
+    limit #{startRecordNum,jdbcType=INTEGER},10
+  </select>
+  
+  <!-- 获取条件查询排行榜-->
+  <select id="getBlogListByCondition" resultMap="BaseResultMap">
+  	select 
+    <include refid="Condition_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    order by ${condition} 
+    limit 0, #{num,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据id，查询上一条记录 -->
+  <select id="getPrevBlog" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    where a.id &gt; #{id,jdbcType=INTEGER}
+    order by id asc
+    limit 1
+  </select>
+  
+  <!-- 根据id，查询下一条记录 -->
+  <select id="getNextBlog" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    where a.id &lt; #{id,jdbcType=INTEGER}
+    order by id desc
+    limit 1
+  </select>
+  
+  <!-- 获取博文列表（若有博文类型，则查询，否则查询所有记录）用于文章列表 -->
+  <select id="getBlogListByBolgType" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from t_blog a left join t_dictionaryDetail b on a.typeid=b.itemCode and b.dictCode='DM_WZFL' 
+    <if test="typeid != null">
+    	where a.typeid=#{typeid,jdbcType=VARCHAR} 
+    </if>
+    order by a.createdate desc 
     limit #{startRecordNum,jdbcType=INTEGER},10
   </select>
 

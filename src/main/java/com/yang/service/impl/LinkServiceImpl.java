@@ -24,7 +24,7 @@ public class LinkServiceImpl implements LinkService {
 	@Autowired
 	private LinkDao linkDao;
 
-	@Override
+	 
 	public String getLinkList(int startRecordNum, int currentPage) {
 		
 		List<LinkBean> beans = linkDao.getLinkList(startRecordNum);
@@ -39,7 +39,7 @@ public class LinkServiceImpl implements LinkService {
 		return json;
 	}
 
-	@Override
+	 
 	public String addLink(LinkBean bean) {
 
 		int flag = linkDao.addLink(bean);
@@ -48,7 +48,7 @@ public class LinkServiceImpl implements LinkService {
 		return json;
 	}
 
-	@Override
+	 
 	public String editLink(LinkBean bean) {
 		
 		int flag = linkDao.editLink(bean);
@@ -57,7 +57,7 @@ public class LinkServiceImpl implements LinkService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteLink(String linkId) {
 		
 		int flag = linkDao.deleteLink(linkId);
@@ -66,7 +66,7 @@ public class LinkServiceImpl implements LinkService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteLinkBatch(String linkIds) {
 		
 		int flag = linkDao.deleteLinkBatch(linkIds);

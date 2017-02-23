@@ -24,7 +24,7 @@ public class MusicServiceImpl implements MusicService {
 	@Autowired
 	private MusicDao musicDao;
 
-	@Override
+	 
 	public String getMusicList(int startRecordNum, int currentPage) {
 
 		List<MusicBean> beans = musicDao.getMusicList(startRecordNum);
@@ -39,7 +39,7 @@ public class MusicServiceImpl implements MusicService {
 		return json;
 	}
 
-	@Override
+	 
 	public String addMusic(MusicBean bean) {
 		
 		int flag = musicDao.addMusic(bean);
@@ -48,7 +48,7 @@ public class MusicServiceImpl implements MusicService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteMusic(String musicId) {
 		
 		int flag = musicDao.deleteMusic(musicId);
@@ -57,7 +57,7 @@ public class MusicServiceImpl implements MusicService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteMusicBatch(String musicIds) {
 		
 		int flag = musicDao.deleteMusicBatch(musicIds);

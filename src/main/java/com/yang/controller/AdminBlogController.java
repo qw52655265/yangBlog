@@ -57,15 +57,6 @@ public class AdminBlogController {
 	 */
 	@RequestMapping("toAddBlog")
 	public String toAddBlog(Model model){
-//		JSONObject types;//博文类型
-//		try {
-//			String result = blogTypesService.getBlogTypesList();
-//			JSONArray row = JSONArray.parseArray(result);
-//			if(row.size() > 0){
-//				types = JSONUtils.setReturnSuccessJSON(row);
-//			}else{
-//				types = JSONUtils.setReturnErrorJSON();
-//			}
 			
 			//文章分类
 			String typesResult = dictionaryService.getDictionaryDetailList("DM_WZFL");
@@ -79,12 +70,6 @@ public class AdminBlogController {
 			if(signTagRow.size() > 0){
 				model.addAttribute("signTag", signTagRow);
 			}
-			
-//		} catch (Exception e) {
-//			types = JSONUtils.setReturnErrorJSON();
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("types", types);
 		
 		return "page/admin/blog/blogAdd";
 	}

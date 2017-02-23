@@ -143,7 +143,7 @@ public class AdminPhotoController {
 	}
 	
 	/**
-	 * 获取相册列表
+	 * 获取相片列表
 	 * @param model
 	 * @param parentId
 	 * @return

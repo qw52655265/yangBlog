@@ -397,7 +397,7 @@ input {
 }
 
 #top-header {
-	background: #fff url(images/header-top.png) repeat-x top center
+	background: #fff /*url(images/header-top.png) repeat-x top center*/;
 }
 
 .top-nav {
@@ -1341,8 +1341,8 @@ input[type="password"] {
 
 .thumbnail a img {
 	float: left;
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
 	max-width: 100%
 }
 
@@ -1367,7 +1367,7 @@ input[type="password"] {
 }
 
 .load {
-	background: #f4f4f4 url(img/load.gif) no-repeat scroll 50% center;
+	background: #f4f4f4 url(../images/load.gif) no-repeat scroll 50% center;
 	overflow: hidden;
 	zoom: 1;
 	width:200px;
@@ -1809,7 +1809,7 @@ img.alignleft {
 }
 
 .single-meta .views,
-.single-meta .time,
+.single-meta .time, .single-meta li.comment,
 .single-meta li a {
 	color: #999;
 	line-height: 26px;
@@ -2576,7 +2576,7 @@ img.alignleft {
 .new_cat a img {
 	float: left;
 	width: 100px;
-	height: auto
+	height: 75px;
 }
 
 .hot_commend .hot-title,
@@ -8958,7 +8958,7 @@ li.search-inf {
 ::-webkit-scrollbar-corner {
 	background: transparent
 }
-
+/*
 body {
 	cursor: url(images/a.cur), auto
 }
@@ -8966,7 +8966,7 @@ body {
 a:hover {
 	cursor: url(images/b.cur), auto
 }
-
+*/
 strong {
 	font-weight: normal
 }

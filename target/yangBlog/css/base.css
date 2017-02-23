@@ -1,7 +1,7 @@
 @charset "gb2312";
 /* 共用css */
 * { margin: 0; padding: 0 }
-body { font: 12px/1.5 'Microsoft Yahei', 'Simsun'; color: #666666; background: #fff }
+body { font: 12px/1.5 'Microsoft Yahei', 'Simsun'; color: #666666; background: #fff;/*background:#E3E3E3 url("../images/body_bg.png")  0 0 repeat*/; }
 img { border: 0; display: block }
 ul { list-style: none; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
@@ -14,13 +14,45 @@ a:hover { text-decoration: none; }
 .f_r { float: right }
 .l_box { width: 670px; }
 .r_box { width: 300px; }
+#page{padding-top:80px;}
 /* 头部信息 */
-header { width: 1000px; margin: 20px auto; overflow: hidden; clear: both; }
+.top_header{box-shadow:0px 0px 5px gray;width:100%;border-bottom:0px solid #CCCCCC;background: url(../images/bg4.jpg);background-repeat:no-repeat;background-size:100%;background-position-y: 50%;}
+.top_header{height:132px;}
+
+header { width: 1000px; margin: 0px auto 5px auto; overflow: hidden; clear: both;z-index:100;position:relative;}
+#topnav {width: 100%; background: rgba(78,78,78,0.16); height: 42px; line-height: 34px;  border-radius: 0px;font-weight:590;z-index:130;position:relative;}
+#topnav nav{width:1000px;padding-top:5px}
+#topnav nav li{float:left;margin-left:-2px;}
+#topnav nav li:nth-child(1){margin-left:0px}
+#topnav a {z-index:999;position:relative;color:#FFF; margin:0px;border-radius:0px;display: inline-block; font-size: 15px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; padding: 0 15px; transition:0.2s;-ms-transition:0.2s;float:left}
+#topnav a:hover {color: white; transition:0.1s;}
+#topnav .mutil_line{position:relative;}
+#topnav .mutil_line div{width:100%;height:34px;position:absolute;transition:all .4s;-ms-transition:all .4s}
+#topnav .mutil_line div:nth-child(1){box-shadow:2px 0px 0px white inset;-webkit-transform:scale(1,0);-webkit-transform-origin:0% 100%;-ms-transform:scale(1,0);-ms-transform-origin:0% 100%}
+#topnav .mutil_line div:nth-child(2){box-shadow:0px 2px 0px white inset;-webkit-transform:scale(0,1);-webkit-transform-origin:0% 0%;-ms-transform:scale(0,1);-ms-transform-origin:0% 0%}
+#topnav .mutil_line div:nth-child(3){box-shadow:-2px 0px 0px white inset;-webkit-transform:scale(1,0);-webkit-transform-origin:100% 0%;-ms-transform:scale(1,0);-ms-transform-origin:100% 0%}
+#topnav .mutil_line div:nth-child(4){box-shadow:0px -2px 0px white inset;-webkit-transform:scale(0,1);-webkit-transform-origin:100% 100%;-ms-transform:scale(0,1);-ms-transform-origin:100% 100%}
+#topnav a:HOVER + div div:nth-child(1){-webkit-transform:scale(1,1);-ms-transform:scale(1,1);}
+#topnav a:HOVER + .mutil_line div:nth-child(2){-webkit-transform:scale(1,1);-ms-transform:scale(1,1);}
+#topnav a:HOVER + .mutil_line div:nth-child(3){-webkit-transform:scale(1,1);-ms-transform:scale(1,1);}
+#topnav a:HOVER + .mutil_line div:nth-child(4){-webkit-transform:scale(1,1);-ms-transform:scale(1,1);}
+/* #topnav a { color: #FFF } */
+#topnav_current{ box-shadow:0px 0px 3px white inset;color:white }
+#topnav_current span{}/* 高亮选中颜色 */
+.header_right{float:right;width:300px;margin-top:40px;color:white;}
+.header_right p{text-shadow:1px 1px 2px gray;display: none;animation-duration:2s}
+.header_right p:FIRST-CHILD {position:relative;left:-26px;margin-bottom:5px}
+
+
+
+
+
+/*header { width: 1000px; margin: 20px auto; overflow: hidden; clear: both; }
 #topnav { width: 60%; background: #48AE15; height: 46px; line-height: 46px; text-align: center; border-radius: 46px; }
 #topnav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; padding: 0 20px; }
 #topnav a:hover { background: #fff; color: #000; }
 #topnav a { color: #FFF }
-#topnav a.topnav_current { background: #F3FF41;color: #000000; }/* 高亮选中颜色 */
+#topnav a.topnav_current { background: #F3FF41;color: #000000; }*//* 高亮选中颜色 */
 /*.topnav_other{color: #FFF}*/
 /*a.topnav_current { color: #000 }*/
 article { width: 1000px; margin: 20px auto; }
@@ -40,7 +72,7 @@ _margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
 .cloud { width: 100%; clear: both; overflow: hidden }
 .cloud h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; }
 .cloud ul { margin: 20px 0 }
-.cloud ul li { line-height: 24px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
+.cloud ul li { line-height: 24px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; /*border-radius: 8px;*/ -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .cloud ul li a { color: #FFF }
 .cloud ul li:nth-child(8n-7) { background: #8A9B0F }
 .cloud ul li:nth-child(8n-6) { background: #EB6841 }
@@ -60,7 +92,7 @@ _margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
 #tab li.cur a { color: #fff; background: #f77825; }
 .bd { display: none }
 .bd-news ul { padding: 10px 0 0 10px; background: url(../images/ph2.png) no-repeat 10px 29px; }
-.bd-news ul li { border-bottom: solid 1px #EAEAEA; line-height: 30px; height: 30px; overflow: hidden; font-size: 14px; padding: 10px 0 0 30px; }
+.bd-news ul li { border-bottom: solid 1px #EAEAEA; line-height: 30px; /*height: 30px;*/ overflow: hidden; font-size: 14px; padding: 10px 0 0 30px; }
 .bd-news ul li a { display: block; }
 .bd-news ul li a:hover { color: #000; }
 .bd-news ul li:hover { border-bottom: #000 1px solid; }/* 鼠标放上去的效果 */

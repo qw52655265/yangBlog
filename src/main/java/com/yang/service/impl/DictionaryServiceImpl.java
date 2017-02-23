@@ -25,7 +25,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Autowired
 	private DictionaryDao dictionaryDao;
 
-	@Override
+	 
 	public String getDictionaryList(int startRecordNum, int currentPage) {
 		
 		List<DictionaryBean> beans = dictionaryDao.getDictionaryList(startRecordNum);
@@ -40,7 +40,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String saveDictionaryAdd(DictionaryBean bean) {
 
 		int flag = dictionaryDao.saveDictionaryAdd(bean);
@@ -49,7 +49,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String saveDictionaryEdit(DictionaryBean bean) {
 
 		int flag = dictionaryDao.saveDictionaryEdit(bean);
@@ -58,7 +58,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteDictionary(String id) {
 
 		int flag = dictionaryDao.deleteDictionary(id);
@@ -67,7 +67,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteDictionaryBatch(String ids) {
 
 		int flag = dictionaryDao.deleteDictionaryBatch(ids);
@@ -76,7 +76,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getDictionaryDetailList(String dictCode) {
 
 		List<DictionaryDetailBean> beans = dictionaryDao.getDictionaryDetailList(dictCode);
@@ -85,7 +85,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String saveDetailAdd(DictionaryDetailBean bean) {
 
 		int flag = dictionaryDao.saveDetailAdd(bean);
@@ -94,7 +94,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String saveDetailEdit(DictionaryDetailBean bean) {
 
 		int flag = dictionaryDao.saveDetailEdit(bean);
@@ -103,7 +103,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteDetail(String itemId) {
 
 		int flag = dictionaryDao.deleteDetail(itemId);
@@ -112,7 +112,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteDetailBatch(String itemIds) {
 
 		int flag = dictionaryDao.deleteDetailBatch(itemIds);

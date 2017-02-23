@@ -19,6 +19,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
     <result column="recordCount" property="recordCount" jdbcType="INTEGER" />
     <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap id="ResultMapWithBLOBs" type="com.yang.entity.BlogBean" extends="BaseResultMap" >
@@ -41,6 +42,7 @@
     DATE_FORMAT(a.createdate,'%Y-%m-%d %H:%i') createdate, 
     DATE_FORMAT(a.editdate,'%Y-%m-%d %H:%i')   editdate,
     a.img img,
+    a.author author,
     (select count(cc.id) from t_blog cc) recordCount
   </sql>
   
@@ -60,6 +62,7 @@
     DATE_FORMAT(a.createdate,'%m/%d') createdate, 
     DATE_FORMAT(a.editdate,'%m/%d')   editdate,
     a.img img,
+    a.author author,
     (select count(cc.id) from t_blog cc) recordCount
   </sql>
   

@@ -24,7 +24,7 @@ public class PhotoServiceImpl implements PhotoService {
 	@Autowired
 	private PhotoDao photoDao;
 
-	@Override
+	 
 	public String getPhotoList(int startRecordNum, int currentPage) {
 		
 		List<PhotoBean> beans = photoDao.getPhotoList(startRecordNum);
@@ -39,16 +39,19 @@ public class PhotoServiceImpl implements PhotoService {
 		return json;
 	}
 
-	@Override
+	 
 	public String addPhoto(PhotoBean bean) {
 		
 		int flag = photoDao.addPhoto(bean);
+		if(flag >= 1){//保存相片成功，更新相册封面（默认使用相册第一张相片，判断已经放在存储过程中）
+			photoDao.updateAlbum(bean.getParentId());
+		}
 		String json = JSONUtils.createJson(flag, bean.getPhotoId());
 		
 		return json;
 	}
 
-	@Override
+	 
 	public String editPhoto(PhotoBean bean) {
 		
 		int flag = photoDao.editPhoto(bean);
@@ -57,7 +60,7 @@ public class PhotoServiceImpl implements PhotoService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deletePhoto(String photoId) {
 		
 		int flag = photoDao.deletePhoto(photoId);
@@ -66,7 +69,7 @@ public class PhotoServiceImpl implements PhotoService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deletePhotoBatch(String photoIds) {
 		
 		int flag = photoDao.deletePhotoBatch(photoIds);
@@ -75,10 +78,17 @@ public class PhotoServiceImpl implements PhotoService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getPhotoInfoList(String parentId) {
 		
 		List<PhotoBean> beans = photoDao.getPhotoInfoList(parentId);
+		String json = JSON.toJSONString(beans);
+		
+		return json;
+	}
+	
+	public String getAlbum(){
+		List<PhotoBean> beans = photoDao.getAlbum();
 		String json = JSON.toJSONString(beans);
 		
 		return json;

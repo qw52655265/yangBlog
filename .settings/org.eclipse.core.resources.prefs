@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/yang/controller/IndexController.java=UTF-8
+encoding//src/main/java/com/yang/service/impl/BlogServiceImpl.java=UTF-8
+encoding//src/main/resources/com/yang/mappers/BlogMapper.xml=UTF-8
+encoding//src/main/resources/com/yang/mappers/DictionaryMapper.xml=UTF-8
+encoding//src/main/resources/com/yang/mappers/LinkMapper.xml=UTF-8
+encoding//src/main/resources/com/yang/mappers/MusicMapper.xml=UTF-8
+encoding//src/main/resources/com/yang/mappers/PhotoMapper.xml=UTF-8
+encoding//src/main/resources/com/yang/mappers/UserMapper.xml=UTF-8
+encoding//src/main/resources/config.properties=UTF-8
+encoding//src/main/resources/log4j.properties=UTF-8
+encoding//src/main/resources/spring-mvc.xml=UTF-8
+encoding//src/main/resources/spring-mybatis.xml=UTF-8
+encoding//src/main/resources/spring.xml=UTF-8
+encoding/<project>=UTF-8

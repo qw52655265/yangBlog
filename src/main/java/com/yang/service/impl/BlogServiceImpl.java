@@ -16,12 +16,12 @@ public class BlogServiceImpl implements BlogService {
 	@Autowired
 	private BlogDao blogDao;
 	
-	@Override
+	 
 	public String getBlogList(int startRecordNum, int currentPage) {
 		
 		List<BlogBean> beans = blogDao.getBlogList(startRecordNum);
 		if(beans.size() > 0){
-			beans.get(0).setCurrentPage(currentPage);//设置当前页
+			beans.get(0).setCurrentPage(currentPage);//璁剧疆褰撳墠椤�
 			int recordCount = beans.get(0).getRecordCount();
 			int pageCount = (int) Math.ceil(((double)recordCount)/5);
 			beans.get(0).setPageCount(pageCount);
@@ -31,7 +31,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 	
-	@Override
+	 
 	public String getBlogInfo(String id) {
 		
 		BlogBean bean = blogDao.getBlogInfo(id);
@@ -40,7 +40,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 	
-	@Override
+	 
 	public String addBlog(BlogBean bean) {
 		
 		int flag = blogDao.addBlog(bean);
@@ -49,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String editBlog(BlogBean bean) {
 		
 		int flag = blogDao.editBlog(bean);
@@ -58,7 +58,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String deleteBlog(String id) {
 		
 		int flag = blogDao.deleteBlog(id);
@@ -67,7 +67,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 	
-	@Override
+	 
 	public String deleteBlogBatch(String idString) {
 		
 		int flag = blogDao.deleteBlogBatch(idString);
@@ -76,7 +76,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String autoHitCount(String id) {
 		
 		int flag = blogDao.autoHitCount(id);
@@ -85,12 +85,12 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getBlogList4Index(int startRecordNum, int currentPage) {
 		
 		List<BlogBean> beans = blogDao.getBlogList4Index(startRecordNum);
 		if(beans.size() > 0){
-			beans.get(0).setCurrentPage(currentPage);//设置当前页
+			beans.get(0).setCurrentPage(currentPage);//璁剧疆褰撳墠椤�
 			int recordCount = beans.get(0).getRecordCount();
 			int pageCount = (int) Math.ceil(((double)recordCount)/5);
 			beans.get(0).setPageCount(pageCount);
@@ -100,7 +100,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getBlogListByCondition(String condition, int num) {
 		
 		List<BlogBean> beans = blogDao.getBlogListByCondition(condition, num);
@@ -109,7 +109,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getPrevBlog(int id) {
 		
 		BlogBean bean = blogDao.getPrevBlog(id);
@@ -118,7 +118,7 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getNextBlog(int id) {
 		
 		BlogBean bean = blogDao.getNextBlog(id);
@@ -127,12 +127,12 @@ public class BlogServiceImpl implements BlogService {
 		return json;
 	}
 
-	@Override
+	 
 	public String getBlogListByBolgType(int startRecordNum, int currentPage, String typeid) {
 		
 		List<BlogBean> beans = blogDao.getBlogListByBolgType(startRecordNum, typeid);
 		if(beans.size() > 0){
-			beans.get(0).setCurrentPage(currentPage);//设置当前页
+			beans.get(0).setCurrentPage(currentPage);//璁剧疆褰撳墠椤�
 			int recordCount = beans.get(0).getRecordCount();
 			int pageCount = (int) Math.ceil(((double)recordCount)/10);
 			beans.get(0).setPageCount(pageCount);

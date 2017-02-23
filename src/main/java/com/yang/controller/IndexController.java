@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yang.service.BlogService;
 import com.yang.service.DictionaryService;
 import com.yang.service.LinkService;
+import com.yang.service.PhotoService;
 import com.yang.utils.JSONUtils;
 import com.yang.utils.PageUtils;
 
@@ -32,6 +33,8 @@ public class IndexController {
 	private LinkService linkService;
 	@Autowired
 	private DictionaryService dictionaryService;
+	@Autowired
+	private PhotoService photoService;
 	
 	/**
 	 * 网站首页
@@ -41,8 +44,6 @@ public class IndexController {
 	public String getIndex(Model model){
 		String result;
 		JSONObject blogList = null;
-		JSONObject linkList = null;
-		JSONObject tagList = null;
 		try {
 			//文章推荐
 			result = blogService.getBlogList4Index(0, 1);
@@ -53,36 +54,8 @@ public class IndexController {
 			e.printStackTrace();
 		}
 		
-		//点击排行
-		JSONObject hotCommentArticleList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
-	
-		//最新文章
-		JSONObject recentArticleList = getBlogListByCondition(" createdate desc ", 5);
-		
-		try {
-			//标签云集
-			result = dictionaryService.getDictionaryDetailList("DM_BQYJ");
-			JSONArray tagRow = JSONArray.parseArray(result);
-			tagList = JSONUtils.setReturnSuccessJSON(tagRow);
-		} catch (Exception e) {
-			tagList = JSONUtils.setReturnErrorJSON();
-			e.printStackTrace();
-		}
-		
-		try {
-			//友情链接
-			result = linkService.getLinkList(0, 1);
-			JSONArray linkRow = JSONArray.parseArray(result);
-			linkList = JSONUtils.setReturnSuccessJSON(linkRow);
-		} catch (Exception e) {
-			linkList = JSONUtils.setReturnErrorJSON();
-			e.printStackTrace();
-		}
 		model.addAttribute("blogList", blogList);
-		model.addAttribute("hotCommentArticleList", hotCommentArticleList);
-		model.addAttribute("recentArticleList", recentArticleList);
-		model.addAttribute("tagList", tagList);
-		model.addAttribute("linkList", linkList);
+		getRightLayoutInfo(model);
 		
 		return "page/front/index";
 	}
@@ -98,10 +71,6 @@ public class IndexController {
 	public String getBlogList(Model model, 
 			@PathVariable("pageNum") String pageNum, 
 			@PathVariable("typeid") String typeid){
-//	@RequestMapping(value="getBlogList/{pageNum}/{typeid}", method=RequestMethod.GET)
-//	public String getBlogList(Model model, 
-//			@RequestParam(value="pageNum", required=false, defaultValue="1") String pageNum, 
-//			@RequestParam(value="typeid", required=false, defaultValue="") String typeid){
 		
 		JSONObject blogList;
 		try {
@@ -111,7 +80,6 @@ public class IndexController {
 			if("all".equals(typeid)){
 				typeid = null;
 			}
-//			System.out.println(pageNum+">>>"+typeid+"<<<");
 			String result = blogService.getBlogListByBolgType(PageUtils.getStartRecordNum(Integer.parseInt(pageNum)),Integer.parseInt(pageNum), typeid);
 			JSONArray row = JSONArray.parseArray(result);
 			blogList = JSONUtils.setReturnSuccessJSON(row);
@@ -120,21 +88,13 @@ public class IndexController {
 			blogList = JSONUtils.setReturnErrorJSON();
 			e.printStackTrace();
 		}
-		//点击排行
-		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
-	
-		//最新文章
-		JSONObject createdateList = getBlogListByCondition(" createdate desc ", 5);
-		
-		model.addAttribute("clickNumList", clickNumList);
-		model.addAttribute("createdateList", createdateList);
 		model.addAttribute("blogList", blogList);
 		if(typeid == null){
 			model.addAttribute("typeid", "all");
 		}else{
 			model.addAttribute("typeid", typeid);
 		}
-		
+		getRightLayoutInfo(model);
 		
 		return "page/front/blogList";
 	}
@@ -162,12 +122,6 @@ public class IndexController {
 			info = JSONUtils.setReturnErrorJSON();
 			e.printStackTrace();
 		}
-		//点击排行
-		JSONObject clickNumList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
-	
-		//最新文章
-		JSONObject createdateList = getBlogListByCondition(" createdate desc ", 5);
-		
 		try {
 			//上一条记录
 			result = blogService.getPrevBlog(Integer.parseInt(id));
@@ -193,10 +147,53 @@ public class IndexController {
 		model.addAttribute("info", info);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
-		model.addAttribute("clickNumList", clickNumList);
-		model.addAttribute("createdateList", createdateList);
+		
+		getRightLayoutInfo(model);
 		
 		return "page/front/blogInfo";
+	}
+	
+	/**
+	 * @描述 获取右侧栏的排行榜等信息，通用
+	 * @param model
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 上午10:37:46
+	 * @version
+	 */
+	private void getRightLayoutInfo(Model model){
+		String result;
+		JSONObject linkList;
+		JSONObject tagList;
+		
+		//点击排行
+		JSONObject hotCommentArticleList = getBlogListByCondition(" hitcount desc , createdate desc ", 10);
+	
+		//最新文章
+		JSONObject recentArticleList = getBlogListByCondition(" createdate desc ", 5);
+		
+		try {
+			//标签云集
+			result = dictionaryService.getDictionaryDetailList("DM_BQYJ");
+			JSONArray tagRow = JSONArray.parseArray(result);
+			tagList = JSONUtils.setReturnSuccessJSON(tagRow);
+		} catch (Exception e) {
+			tagList = JSONUtils.setReturnErrorJSON();
+			e.printStackTrace();
+		}
+		
+		try {
+			//友情链接
+			result = linkService.getLinkList(0, 1);
+			JSONArray linkRow = JSONArray.parseArray(result);
+			linkList = JSONUtils.setReturnSuccessJSON(linkRow);
+		} catch (Exception e) {
+			linkList = JSONUtils.setReturnErrorJSON();
+			e.printStackTrace();
+		}
+		model.addAttribute("hotCommentArticleList", hotCommentArticleList);
+		model.addAttribute("recentArticleList", recentArticleList);
+		model.addAttribute("tagList", tagList);
+		model.addAttribute("linkList", linkList);
 	}
 	
 	/**
@@ -227,12 +224,57 @@ public class IndexController {
 		return "page/list";
 	}
 	
-	@RequestMapping("getComment")
-	public String getComment(String action, String signature ){
-		System.out.println(action);
-		System.out.println(signature);
+	/**
+	 * @描述 跳转到相册
+	 * @return
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 下午3:21:58
+	 * @version
+	 */
+	@RequestMapping(value="getAlbum", method=RequestMethod.GET)
+	public String getAlbum(Model model){
+		JSONObject list;
+		try {
+			
+			String result = photoService.getAlbum();
+			JSONArray row = JSONArray.parseArray(result);
+			list = JSONUtils.setReturnSuccessJSON(row);
+			
+		} catch (NumberFormatException e) {
+			list = JSONUtils.setReturnErrorJSON();
+			e.printStackTrace();
+		}
+		model.addAttribute("list", list);
+		return "page/front/album";
+	}
+	
+	/**
+	 * 
+	 * @描述 获取某一相册中的相片列表
+	 * @param model
+	 * @param parentId
+	 * @return
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 下午3:27:14
+	 * @version
+	 */
+	@RequestMapping(value="getAlbumInfo/{parentId}", method=RequestMethod.GET)
+	public String getAlbumInfo(Model model, @PathVariable("parentId") String parentId){
 		
-		return null;
+		JSONObject list;
+		try {
+			String result = photoService.getPhotoInfoList(parentId);
+			JSONArray row = JSONArray.parseArray(result);
+			list = JSONUtils.setReturnSuccessJSON(row);
+			
+		} catch (NumberFormatException e) {
+			list = JSONUtils.setReturnErrorJSON();
+			e.printStackTrace();
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("parentId", parentId);
+		
+		return "page/front/albumInfo";
 	}
 
 }

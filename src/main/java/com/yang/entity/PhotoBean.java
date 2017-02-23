@@ -16,9 +16,18 @@ public class PhotoBean {
 	private String addDate;
 	private String editDate;
 
+	private int photoCount;// 相片数
 	private int recordCount;// 总记录数
 	private int pageCount;// 总页数
 	private int currentPage;// 当前页数
+
+	public int getPhotoCount() {
+		return photoCount;
+	}
+
+	public void setPhotoCount(int photoCount) {
+		this.photoCount = photoCount;
+	}
 
 	public String getPhotoId() {
 		return photoId;

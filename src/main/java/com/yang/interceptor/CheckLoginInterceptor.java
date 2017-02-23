@@ -10,17 +10,14 @@ import com.alibaba.fastjson.JSONObject;
 
 public class CheckLoginInterceptor implements HandlerInterceptor {
 
-	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3) throws Exception {
 		
 	}
 
-	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3) throws Exception {
 		
 	}
 
-	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
 		
 		JSONObject user = (JSONObject) request.getSession().getAttribute("user");

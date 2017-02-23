@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.016" errors="0" skipped="0" tests="1" name="com.test.TestBlog">
+<testsuite failures="0" time="0" errors="0" skipped="0" tests="1" name="com.test.TestBlog">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin"/>
@@ -27,9 +27,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 8"/>
-    <property name="classworlds.conf" value="D:\MyEclipseWorkSpace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf824688543614343692.tmp"/>
+    <property name="classworlds.conf" value="D:\MyEclipseWorkSpace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4140313662893011618.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.library.path" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Acer\abFiles\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.7.0_80\bin;C:\Program Files\TortoiseSVN\bin;D:\apache-tomcat-7.0.59\bin;D:\apache-maven-3.3.9\bin;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\Doctrine extensions for PHP\;D:\apache-maven-3.3.9\bin;c:\Program Files\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;c:\Program Files\Microsoft SQL Server\110\DTS\Binn\;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;."/>
+    <property name="java.library.path" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Acer\abFiles\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Java\jdk1.7.0_80\bin;C:\Program Files\TortoiseSVN\bin;D:\apache-tomcat-7.0.59\bin;D:\apache-maven-3.1.0\bin;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5 &amp; MySQL Utilities 1.5\Doctrine extensions for PHP\;D:\apache-maven-3.1.0\bin;c:\Program Files\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;c:\Program Files\Microsoft SQL Server\110\DTS\Binn\;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;D:\nexus-2.14.1-01/bin;C:\Program Files\nodejs\;C:\Ruby23\bin;C:\Users\acerE\AppData\Roaming\npm;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -38,13 +38,14 @@
     <property name="user.timezone" value="Asia/Shanghai"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.7"/>
-    <property name="file.encoding" value="UTF-8"/>
+    <property name="file.encoding" value="GBK"/>
     <property name="user.name" value="acerE"/>
-    <property name="java.class.path" value="D:\apache-maven-3.3.9\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="D:\apache-maven-3.1.0\boot\plexus-classworlds-2.4.2.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s D:\apache-maven-3.3.9\conf\settings.xml install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s D:\MvnLocalRepository\settings.xml install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -53,7 +54,7 @@
     <property name="java.ext.dirs" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\resources.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\rt.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\sunrsasign.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\jsse.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\jce.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\charsets.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\lib\jfr.jar;C:\MyEclipse2015\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="D:\apache-maven-3.3.9"/>
+    <property name="maven.home" value="D:\apache-maven-3.1.0"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -61,5 +62,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.016" classname="com.test.TestBlog" name="testGetBlogById"/>
+  <testcase time="0" classname="com.test.TestBlog" name="testGetBlogById"/>
 </testsuite>

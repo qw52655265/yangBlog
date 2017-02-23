@@ -52,4 +52,14 @@ public interface PhotoService {
 	 * @return
 	 */
 	String getPhotoInfoList(String parentId);
+	
+	/**
+	 * 
+	 * @描述 博客前端·获取相册列表
+	 * @return
+	 * @author 杨小龙
+	 * @创建时间 2017年2月22日 下午3:42:11
+	 * @version
+	 */
+	String getAlbum();
 }

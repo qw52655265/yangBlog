@@ -9,7 +9,7 @@
 	<header>
 		<div class="logo f_l" style="width:100%">
 			<div style="float: left;padding-top:25px;overflow: hidden;position:relative;z-index:140">
-				<img alt="" src="<%=path %>/images/bloglogo.png"> 
+				<img alt="" src="<%=path %>/images/bloglogo.png" onclick="window.open('<%=path %>/index.do','_self')"> 
 			</div>
 			<div class="header_right">
 				<p class="animated fadeInLeft" style="display: block;">——记忆像是倒在掌心的水</p>
@@ -21,7 +21,7 @@
 		<nav>
 		<ul>
 			<li>
-				<a href="javascript:void(0)" target="_self" id="topnav_current">
+				<a href="<%=path %>/index.do" target="_self">
 					<span>首页</span>
 				</a>
 				<div class="mutil_line">
@@ -32,7 +32,7 @@
 				</div>
 			</li>
 			<li>
-				<a href="javascript:void(0)" target="_self">
+				<a href="<%=path %>/getBlogList/all/all.do" target="_self">
 					<span>文章记录</span>
 				</a>
 				<div class="mutil_line">
